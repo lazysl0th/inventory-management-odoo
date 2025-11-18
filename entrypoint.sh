@@ -3,16 +3,19 @@ set -e
 
 echo ">> Generating Odoo configuration from template..."
 
-CONFIG_FILE=/etc/odoo/odoo.conf
+TEMPLATE="/etc/odoo/odoo.conf.tpl"
+OUTPUT="/etc/odoo/odoo.conf"
 
-# Replace environment variables manually using sed
-sed \
-  -e "s|\${DATABASE_HOST}|${DATABASE_HOST}|g" \
-  -e "s|\${DATABASE_PORT}|${DATABASE_PORT}|g" \
-  -e "s|\${DATABASE_USER}|${DATABASE_USER}|g" \
-  -e "s|\${DATABASE_PASSWORD}|${DATABASE_PASSWORD}|g" \
-  -e "s|\${DATABASE_NAME}|${DATABASE_NAME}|g" \
-  /etc/odoo/odoo.conf.tpl > $CONFIG_FILE
+eval "echo \"$(sed 's/\"/\\"/g' $TEMPLATE)\"" > $OUTPUT
 
-echo ">> Starting Odoo..."
-exec odoo --config=$CONFIG_FILE
+echo ">> Checking if database needs initialization..."
+
+CHECK_DB=$(psql "host=$DATABASE_HOST port=$DATABASE_PORT user=$DATABASE_USER password=$DATABASE_PASSWORD dbname=$DATABASE_NAME" -tAc "SELECT COUNT(*) FROM pg_tables WHERE tablename = 'ir_module_module';" || echo "0")
+
+if [ "$CHECK_DB" = "0" ]; then
+  echo ">> Database is empty. Initializing base module..."
+  exec odoo --config="$OUTPUT" -i base --load-language=en_US
+else
+  echo ">> Database already initialized. Running Odoo normally..."
+  exec odoo --config="$OUTPUT"
+fi
