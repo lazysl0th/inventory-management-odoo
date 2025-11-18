@@ -4,11 +4,11 @@ COPY ./addons /mnt/extra-addons
 
 COPY ./odoo.conf.tpl /etc/odoo/odoo.conf.tpl
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN chown -R odoo:odoo /mnt/extra-addons
 
 EXPOSE 8069
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
