@@ -1,7 +1,17 @@
-FROM odoo:17.0
+FROM odoo:17
 
-COPY odoo.conf /etc/odoo/odoo.conf
+RUN apt-get update && apt-get install -y \
+    wkhtmltopdf \
+    xfonts-75dpi \
+    xfonts-base \
+    && apt-get clean
 
-COPY ./addons /mnt/extra-addons/
+COPY ./addons /mnt/extra-addons
 
-USER odoo
+COPY ./odoo.conf /etc/odoo/odoo.conf
+
+RUN chown -R odoo:odoo /mnt/extra-addons
+
+EXPOSE 8069
+
+CMD ["odoo", "--config=/etc/odoo/odoo.conf"]
