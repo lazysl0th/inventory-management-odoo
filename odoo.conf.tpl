@@ -4,8 +4,9 @@ db_host = ${DATABASE_HOST}
 db_port = 5432
 db_user = ${DATABASE_USER}
 db_password = ${DATABASE_PASSWORD}
+db_name = ${DATABASE_NAME}
 admin_passwd = ${MASTER_PASSWORD}
-list_db = True
+list_db = False
 
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
 
