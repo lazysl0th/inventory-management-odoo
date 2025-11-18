@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory,Inventory,model_inventory,,1,1,1,1
+access_inventory_item,Item,model_inventory_item,,1,1,1,1
+access_inventory_field,Inventory Field,model_inventory_field,,1,1,1,1
+access_inventory_numeric_stat,Numeric Stat,model_inventory_numeric_stat,,1,1,1,1
+access_inventory_text_stat,Text Stat,model_inventory_text_stat,,1,1,1,1
+access_inventory_text_topvalue,Text Top Value,model_inventory_text_topvalue,,1,1,1,1

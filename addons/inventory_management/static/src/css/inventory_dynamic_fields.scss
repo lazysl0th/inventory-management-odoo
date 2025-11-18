@@ -1,0 +1,13 @@
+.o_inner_group:has(.o_field_inventory_dynamic_fields) {
+    grid-template-columns: 100% !important;
+}
+
+.o_inner_group:has(.o_field_inventory_dynamic_fields) .g-col-sm-2 {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+}
+
+.o_inner_group:has(.o_field_inventory_dynamic_fields) .o_wrap_field {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+}

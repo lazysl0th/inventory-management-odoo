@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="action_inventory_item" model="ir.actions.act_window">
+        <field name="name">Items</field>
+        <field name="res_model">inventory.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_inventory_item"
+              name="Items"
+              parent="menu_inventory_management_root"
+              action="action_inventory_item"
+              sequence="20" />
+
+</odoo>

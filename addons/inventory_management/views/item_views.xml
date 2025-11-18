@@ -1,0 +1,52 @@
+<odoo>
+
+    <record id="view_inventory_item_tree" model="ir.ui.view">
+        <field name="name">inventory.item.tree</field>
+        <field name="model">inventory.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="external_id"/>
+                <field name="exported"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inventory_item_form" model="ir.ui.view">
+        <field name="name">inventory.item.form</field>
+        <field name="model">inventory.item</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form string="Item">
+
+                <header>
+                    <button name="action_export_to_app"
+                            type="object"
+                            string="Export to app"
+                            class="oe_highlight"
+                            modifiers="{'invisible': [['exported', '=', True]]}"
+                    />
+                </header>
+
+                <sheet>
+
+                    <group col="1">
+                        <field name="inventory_id" modifiers="{'readonly': true}"/>
+                        <field name="external_id" modifiers="{'readonly': true}"/>
+                        <field name="exported" modifiers="{'readonly': true}"/>
+                    </group>
+
+                    <separator string="Dynamic Fields"/>
+
+                    <group col="1">
+                        <field name="data"
+                               widget="inventory_dynamic_fields"
+                               nolabel="1"/>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

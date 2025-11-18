@@ -1,0 +1,92 @@
+<odoo>
+
+    <record id="view_inventory_management_tree" model="ir.ui.view">
+        <field name="name">inventory.tree</field>
+        <field name="model">inventory</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="api_token"/>
+                <field name="title"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inventory_management_form" model="ir.ui.view">
+        <field name="name">inventory.form</field>
+        <field name="model">inventory</field>
+        <field name="arch" type="xml">
+            <form string="Inventory">
+
+                <header>
+                    <button name="action_import_from_api"
+                            type="object"
+                            string="Import from API"
+                            class="oe_highlight"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="api_token"/>
+                        <field name="title" readonly="1"/>
+                        <field name="items_count" readonly="1"/>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Fields">
+                            <field name="field_ids" readonly="1"/>
+                        </page>
+
+                        <page string="Numeric stats">
+                            <field name="numeric_stat_ids" readonly="1"/>
+                        </page>
+
+                        <page string="Text stats">
+                            <field name="text_stat_ids" readonly="1"/>
+                        </page>
+
+                        <page string="Items">
+                            <field name="item_ids" mode="tree,form" context="{'api_token': api_token}">
+                                <tree>
+                                    <field name="external_id"/>
+                                    <field name="exported"/>
+                                </tree>
+
+                                <form string="Item">
+                                    <sheet>
+                                        <header>
+                                            <button name="action_export_to_app"
+                                                type="object"
+                                                string="Export to App"
+                                                class="btn-primary oe_export_btn"
+                                                attrs="{'invisible': ['|', ('__islocal', '=', True), ('exported','=',True)]}"/>
+                                        </header>
+                                        <group>
+                                            <field name="inventory_id" readonly="1"/>
+                                            <field name="external_id" readonly="1"/>
+                                            <field name="exported" readonly="1"/>
+                                        </group>
+
+                                        <group string="Field">
+                                            <field name="data"
+                                                widget="inventory_dynamic_fields"
+                                                nolabel="1"/>
+                                        </group>
+
+                                        <group class="col-6">
+                                            <field name="owner_email"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

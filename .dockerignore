@@ -1,0 +1,9 @@
+.env
+temp/
+data/
+sessions/
+*.pyc
+*.log
+__pycache__
+.DS_Store
+volumes/ 

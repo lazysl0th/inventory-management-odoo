@@ -1,0 +1,19 @@
+<odoo>
+
+    <menuitem id="menu_inventory_management_root"
+              name="Inventory Management"
+              sequence="5"/>
+
+    <record id="action_inventory_management" model="ir.actions.act_window">
+        <field name="name">Inventories</field>
+        <field name="res_model">inventory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_inventory_management"
+              name="Inventories"
+              parent="menu_inventory_management_root"
+              action="action_inventory_management"
+              sequence="10"/>
+
+</odoo>
