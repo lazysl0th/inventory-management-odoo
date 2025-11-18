@@ -5,7 +5,6 @@ COPY ./addons /mnt/extra-addons
 COPY ./odoo.conf.tpl /etc/odoo/odoo.conf.tpl
 
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN chown -R odoo:odoo /mnt/extra-addons
 
