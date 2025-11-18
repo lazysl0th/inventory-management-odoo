@@ -4,10 +4,11 @@ db_host = ${DATABASE_HOST}
 db_port = 5432
 db_user = ${DATABASE_USER}
 db_password = ${DATABASE_PASSWORD}
+db_name = ${DATABASE_NAME}
 
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
 
 data_dir = /var/lib/odoo
-
-xmlrpc_port = 8069
 proxy_mode = True
+xmlrpc_port = 8069
+longpolling_port = 8072

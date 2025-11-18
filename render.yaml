@@ -2,27 +2,16 @@ services:
   - type: web
     name: odoo
     env: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
+
     envVars:
       - key: DATABASE_HOST
-        fromDatabase:
-          name: odoo-db
-          property: host
+        sync: false
       - key: DATABASE_USER
-        fromDatabase:
-          name: odoo-db
-          property: user
+        sync: false
       - key: DATABASE_PASSWORD
-        fromDatabase:
-          name: odoo-db
-          property: password
-    disk:
-      name: odoo-data
-      mountPath: /var/lib/odoo
-      sizeGB: 1
-
-databases:
-  - name: odoo-db
-    plan: starter
+        sync: false
+      - key: DATABASE_NAME
+        sync: false
