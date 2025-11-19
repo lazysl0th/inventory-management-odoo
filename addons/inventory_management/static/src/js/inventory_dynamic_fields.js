@@ -6,7 +6,7 @@ import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 class InventoryDynamicFields extends Component {
     static props = {
-        standardFieldProps,
+        ...standardFieldProps,
     };
 
     static template = xml`
